@@ -1,0 +1,32 @@
+{
+    "name": "dotkernel/dot-debugbar",
+    "description": "DotKernel's debug bar built on top of maximebf/debugbar",
+    "type": "library",
+    "license": "MIT",
+    "homepage": "https://github.com/dotkernel/dot-debugbar",
+    "keywords": [
+        "debug",
+        "debugbar",
+        "phpdebugbar"
+    ],
+    "authors": [
+        {
+            "name": "DotKernel Team",
+            "email": "team@dotkernel.com"
+        }
+    ],
+    "config": {
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "Dot\\DebugBar\\": "src/"
+        }
+    },
+    "require": {
+        "php": "^7.4",
+        "maximebf/debugbar": "^1.17",
+        "dotkernel/dot-twigrenderer": "^3.1",
+        "doctrine/orm": "^2.7"
+    }
+}
