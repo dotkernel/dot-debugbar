@@ -18,8 +18,8 @@ return [
         'javascript_renderer' => [
             'base_url' => '',
             'base_path' => '',
-            'disable_jquery' => true,
-            'disable_fontawesome' => true,
+            'disable_jquery' => false,
+            'disable_fontawesome' => false,
             'disable_highlightjs' => false,
         ]
     ]

@@ -27,7 +27,7 @@ Once installed, the following components need to be registered by adding:
 
 Locate the library's assets directory `vendor/maximebf/debugbar/src/DebugBar/Resources` and copy its contents to your application under `public/debugbar` directory.
 
-Locate the library's config file `vendor/dotkernel/dot-debugbar/config/debugbar.php` and make a copy of it inside your application as:
+Locate the library's config file `vendor/dotkernel/dot-debugbar/config/debugbar.local.php` and make a copy of it inside your application as:
 * `config/autoload/debugbar.local.php`
 * `config/autoload/debugbar.local.php.dist`
 
@@ -42,10 +42,10 @@ For more configuration values, follow the link in the related comment block.
 At this step, the debug bar is not displayed yet. In order to display it, you need to call the following Twig functions from your base layout:
 * `{{ debugBarCss()|raw }}` (needs to be placed in the head section of the layout, where the CSS files are included)
 * `{{ debugBarJs()|raw }}` (needs to be placed in the footer of the layout, where the JS files are included)
-If you plan to enable dot-debugbar on production, make sure you clear your application's config cache by running:
-```bash
-$ php bin/clear-config-cache.php
-```
+
+If you plan to enable dot-debugbar on production, make sure you clear the relevant cache items by deleting:
+* the config cache file: `data/cache/config-cache.php`
+* Twig cache directory: `data/cache/twig`
 
 Additionally, you can check if the debug bar is enabled for your session by calling `debugBarEnabled()` inside a template.
 This feature can be useful if you need to add custom logic for when the debug bar is enabled.
