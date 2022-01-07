@@ -33,6 +33,7 @@ class DebugBar extends \DebugBar\DebugBar
     private DoctrineCollector $doctrineCollector;
 
     /**
+     * DebugBar constructor
      * @throws DebugBarException
      */
     public function __construct(EntityManager $entityManager, array $config)
