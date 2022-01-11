@@ -9,7 +9,7 @@ DotKernel's debug bar built on top of [maximebf/php-debugbar](https://github.com
 [![GitHub stars](https://img.shields.io/github/stars/dotkernel/dot-debugbar)](https://github.com/dotkernel/dot-debugbar/stargazers)
 [![GitHub license](https://img.shields.io/github/license/dotkernel/dot-debugbar)](https://github.com/dotkernel/dot-debugbar/blob/main/LICENSE.md)
 
-![PHP from Packagist (specify version)](https://img.shields.io/packagist/php-v/dotkernel/dot-debugbar/3.0.x-dev)
+![PHP from Packagist (specify version)](https://img.shields.io/packagist/php-v/dotkernel/dot-debugbar/1.0.x-dev)
 
 
 ## Install
