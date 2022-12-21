@@ -51,6 +51,7 @@ class DebugBar extends \DebugBar\DebugBar
         $this->addCollector($this->exceptionsCollector = new ExceptionsCollector());
 
         $this->config = $config[DebugBar::class] ?? [];
+
         $this->getJavascriptRenderer()->setOptions($this->config['javascript_renderer'] ?? []);
         if (!empty($this->config['javascript_renderer']['disable_jquery'])) {
             $this->getJavascriptRenderer()->disableVendor('jquery');
@@ -69,10 +70,37 @@ class DebugBar extends \DebugBar\DebugBar
      */
     public function shouldEnable(string $ipAddress): bool
     {
+        /**
+         * If config file is missing: DebugBar is disabled
+         */
+        if (empty($this->config)) {
+            return false;
+        }
+
+        /**
+         * If config.enabled is missing/empty/false: DebugBar is disabled
+         */
+        if (empty($this->config['enabled'])) {
+            return false;
+        }
+
+        /**
+         * If config.ipWhitelist is missing/empty: DebugBar is disabled
+         */
+        if (empty($this->config['ipWhitelist'])) {
+            return false;
+        }
+
+        /**
+         * If * is in config.ipWhitelist: DebugBar is enabled
+         */
         if (in_array('*', $this->config['ipWhitelist'])) {
             return true;
         }
 
+        /**
+         * If user IP is in config.ipWhitelist: DebugBar is enabled
+         */
         return in_array($ipAddress, $this->config['ipWhitelist']);
     }
 
