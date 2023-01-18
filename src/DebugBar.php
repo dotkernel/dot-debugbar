@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Dot\DebugBar;
 
+use Closure;
 use DebugBar\Bridge\DoctrineCollector;
 use DebugBar\DataCollector\ConfigCollector;
 use DebugBar\DataCollector\ExceptionsCollector;
@@ -15,6 +16,7 @@ use DebugBar\DataCollector\TimeDataCollector;
 use DebugBar\DebugBarException;
 use Doctrine\DBAL\Logging\DebugStack;
 use Doctrine\ORM\EntityManager;
+use Throwable;
 
 class DebugBar extends \DebugBar\DebugBar
 {
@@ -52,6 +54,12 @@ class DebugBar extends \DebugBar\DebugBar
 
         $this->config = $config[DebugBar::class] ?? [];
 
+        $this->getJavascriptRenderer()->addAssets(
+            [
+                'dotkernel.css'
+            ], []
+        );
+
         $this->getJavascriptRenderer()->setOptions($this->config['javascript_renderer'] ?? []);
         if (!empty($this->config['javascript_renderer']['disable_jquery'])) {
             $this->getJavascriptRenderer()->disableVendor('jquery');
@@ -84,24 +92,65 @@ class DebugBar extends \DebugBar\DebugBar
             return false;
         }
 
+        if (filter_var($ipAddress, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
+            return $this->shouldEnableIPV4($ipAddress);
+        } elseif (filter_var($ipAddress, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6)) {
+            return $this->shouldEnableIPV6($ipAddress);
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * @param string $ipAddress
+     * @return bool
+     */
+    private function shouldEnableIPV4(string $ipAddress): bool
+    {
         /**
-         * If config.ipWhitelist is missing/empty: DebugBar is disabled
+         * If config.ipv4Whitelist is missing/empty: DebugBar is disabled
          */
-        if (empty($this->config['ipWhitelist'])) {
+        if (empty($this->config['ipv4Whitelist'])) {
             return false;
         }
 
         /**
-         * If * is in config.ipWhitelist: DebugBar is enabled
+         * If * is in config.ipv4Whitelist: DebugBar is enabled
          */
-        if (in_array('*', $this->config['ipWhitelist'])) {
+        if (in_array('*', $this->config['ipv4Whitelist'])) {
             return true;
         }
 
         /**
-         * If user IP is in config.ipWhitelist: DebugBar is enabled
+         * If user IP is in config.ipv4Whitelist: DebugBar is enabled
          */
-        return in_array($ipAddress, $this->config['ipWhitelist']);
+        return in_array($ipAddress, $this->config['ipv4Whitelist']);
+    }
+
+    /**
+     * @param string $ipAddress
+     * @return bool
+     */
+    private function shouldEnableIPV6(string $ipAddress): bool
+    {
+        /**
+         * If config.ipv6Whitelist is missing/empty: DebugBar is disabled
+         */
+        if (empty($this->config['ipv6Whitelist'])) {
+            return false;
+        }
+
+        /**
+         * If * is in config.ipv6Whitelist: DebugBar is enabled
+         */
+        if (in_array('*', $this->config['ipv6Whitelist'])) {
+            return true;
+        }
+
+        /**
+         * If user IP is in config.ipv6Whitelist: DebugBar is enabled
+         */
+        return in_array($ipAddress, $this->config['ipv6Whitelist']);
     }
 
     /**
@@ -162,6 +211,27 @@ class DebugBar extends \DebugBar\DebugBar
     public function stopTimer(string $name, array $params = []): self
     {
         $this->timeDataCollector->stopMeasure($name, $params);
+        return $this;
+    }
+
+    /**
+     * @param string $name
+     * @param Closure $closure
+     * @return $this
+     */
+    public function measure(string $name, Closure $closure): self
+    {
+        $this->timeDataCollector->measure($name, $closure);
+        return $this;
+    }
+
+    /**
+     * @param Throwable $throwable
+     * @return $this
+     */
+    public function addThrowable(Throwable $throwable): self
+    {
+        $this->exceptionsCollector->addThrowable($throwable);
         return $this;
     }
 }
