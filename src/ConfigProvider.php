@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Dot\DebugBar;
 
@@ -19,7 +19,7 @@ class ConfigProvider
     public function __invoke(): array
     {
         return [
-            'dependencies' => $this->getDependencyConfig()
+            'dependencies' => $this->getDependencyConfig(),
         ];
     }
 
@@ -29,14 +29,15 @@ class ConfigProvider
     public function getDependencyConfig(): array
     {
         return [
-            'aliases' => [
-                DebugBarMiddlewareInterface::class => DebugBarMiddleware::class
+            'aliases'   => [
+                DebugBarInterface::class           => DebugBar::class,
+                DebugBarMiddlewareInterface::class => DebugBarMiddleware::class,
             ],
             'factories' => [
-                DebugBar::class => DebugBarFactory::class,
-                DebugBarExtension::class => DebugBarExtensionFactory::class,
-                DebugBarMiddleware::class => DebugBarMiddlewareFactory::class
-            ]
+                DebugBar::class           => DebugBarFactory::class,
+                DebugBarExtension::class  => DebugBarExtensionFactory::class,
+                DebugBarMiddleware::class => DebugBarMiddlewareFactory::class,
+            ],
         ];
     }
 }

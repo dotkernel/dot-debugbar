@@ -1,10 +1,10 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Dot\DebugBar\Middleware;
 
-use Dot\DebugBar\DebugBar;
+use Dot\DebugBar\DebugBarInterface;
 use ErrorException;
 use Laminas\Stratigility\Middleware\ErrorResponseGenerator;
 use Psr\Http\Message\ResponseInterface;
@@ -13,34 +13,28 @@ use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use Throwable;
 
+use function error_reporting;
+use function restore_error_handler;
+use function set_error_handler;
+
 class DebugBarMiddleware implements DebugBarMiddlewareInterface, MiddlewareInterface
 {
-    /** @var callable Routine that will generate the error response. */
+    /** @var callable $responseGenerator */
     private $responseGenerator;
-
-    /** @var callable */
+    /** @var callable $responseFactory */
     private $responseFactory;
+    private DebugBarInterface $debugBar;
 
-    /** @var DebugBar $debugBar */
-    private DebugBar $debugBar;
-
-    /**
-     * @param DebugBar $debugBar
-     * @param callable $responseFactory
-     * @param callable|null $responseGenerator
-     */
-    public function __construct(DebugBar $debugBar, callable $responseFactory, ?callable $responseGenerator = null)
-    {
-        $this->debugBar = $debugBar;
-        $this->responseFactory = static fn(): ResponseInterface => $responseFactory();
+    public function __construct(
+        DebugBarInterface $debugBar,
+        callable $responseFactory,
+        ?callable $responseGenerator = null
+    ) {
+        $this->debugBar          = $debugBar;
+        $this->responseFactory   = static fn(): ResponseInterface => $responseFactory();
         $this->responseGenerator = $responseGenerator ?: new ErrorResponseGenerator();
     }
 
-    /**
-     * @param ServerRequestInterface $request
-     * @param RequestHandlerInterface $handler
-     * @return ResponseInterface
-     */
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         if ($this->debugBar->shouldEnable($request->getServerParams()['REMOTE_ADDR'])) {
@@ -63,16 +57,10 @@ class DebugBarMiddleware implements DebugBarMiddlewareInterface, MiddlewareInter
         }
     }
 
-    /**
-     * Creates and returns a callable error handler that raises exceptions.
-     *
-     * Only raises exceptions for errors that are within the error_reporting mask.
-     */
-    private function createErrorHandler() : callable
+    private function createErrorHandler(): callable
     {
-        return function (int $errno, string $errstr, string $errfile, int $errline) : void {
+        return function (int $errno, string $errstr, string $errfile, int $errline): void {
             if (! (error_reporting() & $errno)) {
-                // error_reporting does not include this error
                 return;
             }
 
@@ -80,13 +68,6 @@ class DebugBarMiddleware implements DebugBarMiddlewareInterface, MiddlewareInter
         };
     }
 
-    /**
-     * Handles all throwables, generating and returning a response.
-     *
-     * Passes the error, request, and response prototype to createErrorResponse(),
-     * triggers all listeners with the same arguments (but using the response
-     * returned from createErrorResponse()), and then returns the response.
-     */
     private function handleThrowable(Throwable $e, ServerRequestInterface $request): ResponseInterface
     {
         $generator = $this->responseGenerator;

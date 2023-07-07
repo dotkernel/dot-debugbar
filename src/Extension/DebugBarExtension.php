@@ -1,31 +1,26 @@
 <?php
 
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Dot\DebugBar\Extension;
 
-use Dot\DebugBar\DebugBar;
+use Dot\DebugBar\DebugBarInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
-use function rtrim;
 use function sprintf;
+
+use const PHP_EOL;
 
 class DebugBarExtension extends AbstractExtension
 {
     private ?string $baseUrl;
-    private array $config;
-    private DebugBar $debugBar;
+    private DebugBarInterface $debugBar;
 
-    /**
-     * @param DebugBar $debugBar
-     * @param array $config
-     */
-    public function __construct(DebugBar $debugBar, array $config)
+    public function __construct(DebugBarInterface $debugBar, string $baseUrl)
     {
-        $this->config = $config;
         $this->debugBar = $debugBar;
-        $this->baseUrl = rtrim($this->config['application']['url'], '/');
+        $this->baseUrl  = $baseUrl;
     }
 
     /**
@@ -40,20 +35,14 @@ class DebugBarExtension extends AbstractExtension
         ];
     }
 
-    /**
-     * @return bool
-     */
     public function renderDebugBarEnabled(): bool
     {
         return $this->debugBar->isEnabled();
     }
 
-    /**
-     * @return string|null
-     */
     public function renderDebugBarCss(): ?string
     {
-        if (!$this->debugBar->isEnabled()) {
+        if (! $this->debugBar->isEnabled()) {
             return null;
         }
 
@@ -66,12 +55,9 @@ class DebugBarExtension extends AbstractExtension
         return $return;
     }
 
-    /**
-     * @return string|null
-     */
     public function renderDebugBarJs(): ?string
     {
-        if (!$this->debugBar->isEnabled()) {
+        if (! $this->debugBar->isEnabled()) {
             return null;
         }
 
