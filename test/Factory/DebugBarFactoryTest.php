@@ -8,6 +8,7 @@ use DebugBar\DebugBarException;
 use Doctrine\DBAL\Configuration;
 use Doctrine\DBAL\Connection;
 use Doctrine\ORM\EntityManager;
+use Dot\DebugBar\DebugBar;
 use Dot\DebugBar\DebugBarInterface;
 use Dot\DebugBar\Factory\DebugBarFactory;
 use DotTest\DebugBar\CommonTrait;
@@ -79,7 +80,9 @@ class DebugBarFactoryTest extends TestCase
             [
                 'config',
                 [
-                    'test',
+                    DebugBar::class => [
+                        'test',
+                    ],
                 ],
             ],
         ]);
@@ -108,7 +111,9 @@ class DebugBarFactoryTest extends TestCase
             [
                 'config',
                 [
-                    'enabled' => true,
+                    DebugBar::class => [
+                        'enabled' => true,
+                    ],
                 ],
             ],
         ]);
@@ -137,8 +142,10 @@ class DebugBarFactoryTest extends TestCase
             [
                 'config',
                 [
-                    'enabled'       => true,
-                    'ipv4Whitelist' => [],
+                    DebugBar::class => [
+                        'enabled'       => true,
+                        'ipv4Whitelist' => [],
+                    ],
                 ],
             ],
         ]);
@@ -167,9 +174,11 @@ class DebugBarFactoryTest extends TestCase
             [
                 'config',
                 [
-                    'enabled'       => true,
-                    'ipv4Whitelist' => [],
-                    'ipv6Whitelist' => [],
+                    DebugBar::class => [
+                        'enabled'       => true,
+                        'ipv4Whitelist' => [],
+                        'ipv6Whitelist' => [],
+                    ],
                 ],
             ],
         ]);

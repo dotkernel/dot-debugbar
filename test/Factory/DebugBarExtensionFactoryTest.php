@@ -28,12 +28,34 @@ class DebugBarExtensionFactoryTest extends TestCase
     {
         $container = $this->createMock(ContainerInterface::class);
 
-        $container->expects($this->once())
-            ->method('has')
-            ->with('config')
-            ->willReturn(false);
+        $container->method('has')->willReturnMap([
+            [DebugBarInterface::class, true],
+            ['config', false],
+        ]);
 
         $this->expectExceptionMessage(DebugBarFactory::MESSAGE_MISSING_CONFIG);
+        (new DebugBarExtensionFactory())($container);
+    }
+
+    /**
+     * @throws Exception
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     */
+    public function testWillNotCreateExtensionWithoutPackageConfig(): void
+    {
+        $container = $this->createMock(ContainerInterface::class);
+
+        $container->method('has')->willReturnMap([
+            [DebugBarInterface::class, true],
+            ['config', true],
+        ]);
+
+        $container->method('get')->willReturn([
+            'test',
+        ]);
+
+        $this->expectExceptionMessage(DebugBarFactory::MESSAGE_MISSING_PACKAGE_CONFIG);
         (new DebugBarExtensionFactory())($container);
     }
 

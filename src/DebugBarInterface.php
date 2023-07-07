@@ -5,6 +5,9 @@ declare(strict_types=1);
 namespace Dot\DebugBar;
 
 use Closure;
+use DebugBar\DataCollector\ExceptionsCollector;
+use DebugBar\DataCollector\MessagesCollector;
+use DebugBar\DataCollector\TimeDataCollector;
 use DebugBar\DebugBarException;
 use Throwable;
 
@@ -18,7 +21,11 @@ interface DebugBarInterface
 
     public function enable(): self;
 
-    public function getJavascriptRenderer(?string $baseUrl = null, ?string $basePath = null);
+    public function getExceptionsCollector(): ExceptionsCollector;
+
+    public function getMessagesCollector(): MessagesCollector;
+
+    public function getTimeDataCollector(): TimeDataCollector;
 
     public function isEnabled(): bool;
 

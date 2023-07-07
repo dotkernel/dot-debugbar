@@ -18,6 +18,7 @@ use function is_bool;
 
 class DebugBarFactory
 {
+    public const MESSAGE_MISSING_PACKAGE_CONFIG             = 'Unable to find dot-debugbar config';
     public const MESSAGE_MISSING_CONFIG                     = 'Unable to find config in the container';
     public const MESSAGE_MISSING_CONFIG_APPLICATION         = 'Missing/invalid config: application';
     public const MESSAGE_MISSING_CONFIG_APPLICATION_URL     = 'Missing/invalid config: application url';
@@ -45,6 +46,15 @@ class DebugBarFactory
         }
         $config = $container->get('config');
 
+        if (
+            ! array_key_exists(DebugBar::class, $config)
+            || ! is_array($config[DebugBar::class])
+            || empty($config[DebugBar::class])
+        ) {
+            throw new Exception(self::MESSAGE_MISSING_PACKAGE_CONFIG);
+        }
+        $config = $config[DebugBar::class];
+
         if (! array_key_exists('enabled', $config) || ! is_bool($config['enabled'])) {
             throw new Exception(self::MESSAGE_MISSING_CONFIG_ENABLED);
         }
@@ -65,7 +75,7 @@ class DebugBarFactory
         $em = $container->get(EntityManager::class);
         return new DebugBar(
             $em->getConnection()->getConfiguration(),
-            $container->get('config') ?? []
+            $config
         );
     }
 }

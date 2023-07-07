@@ -58,7 +58,7 @@ class DebugBar extends \DebugBar\DebugBar implements DebugBarInterface
         $this->addCollector($this->timeDataCollector = new TimeDataCollector());
         $this->addCollector($this->exceptionsCollector = new ExceptionsCollector());
 
-        $this->config = $config[self::class] ?? [];
+        $this->config = $config;
 
         $this->getJavascriptRenderer()->addAssets(
             [
@@ -79,19 +79,27 @@ class DebugBar extends \DebugBar\DebugBar implements DebugBarInterface
         }
     }
 
+    public function getExceptionsCollector(): ExceptionsCollector
+    {
+        return $this->exceptionsCollector;
+    }
+
+    public function getMessagesCollector(): MessagesCollector
+    {
+        return $this->messagesCollector;
+    }
+
+    public function getTimeDataCollector(): TimeDataCollector
+    {
+        return $this->timeDataCollector;
+    }
+
     public function shouldEnable(string $ipAddress): bool
     {
         /**
-         * If config file is missing: DebugBar is disabled
-         */
-        if (empty($this->config)) {
-            return false;
-        }
-
-        /**
          * If config.enabled is missing/empty/false: DebugBar is disabled
          */
-        if (empty($this->config['enabled'])) {
+        if (false === $this->config['enabled']) {
             return false;
         }
 
