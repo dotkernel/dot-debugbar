@@ -3,7 +3,7 @@
 DotKernel's debug bar built on top of [maximebf/php-debugbar](https://github.com/maximebf/php-debugbar).
 
 ![OSS Lifecycle](https://img.shields.io/osslifecycle/dotkernel/dot-debugbar)
-![PHP from Packagist (specify version)](https://img.shields.io/packagist/php-v/dotkernel/dot-debugbar/1.1.0)
+![PHP from Packagist (specify version)](https://img.shields.io/packagist/php-v/dotkernel/dot-debugbar/1.1.1)
 
 [![GitHub issues](https://img.shields.io/github/issues/dotkernel/dot-debugbar)](https://github.com/dotkernel/dot-debugbar/issues)
 [![GitHub forks](https://img.shields.io/github/forks/dotkernel/dot-debugbar)](https://github.com/dotkernel/dot-debugbar/network)
