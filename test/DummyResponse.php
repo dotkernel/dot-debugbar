@@ -8,8 +8,6 @@ use Psr\Http\Message\MessageInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
 
-use function fopen;
-
 class DummyResponse implements ResponseInterface
 {
     public function __invoke(): ResponseInterface
@@ -55,9 +53,6 @@ class DummyResponse implements ResponseInterface
 
     public function getBody(): StreamInterface
     {
-        /** @var StreamInterface $stream */
-        $stream = fopen('php://temp', 'r');
-        return $stream;
     }
 
     public function withBody(StreamInterface $body): MessageInterface
