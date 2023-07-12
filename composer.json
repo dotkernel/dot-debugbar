@@ -16,7 +16,10 @@
         }
     ],
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
     },
     "autoload": {
         "psr-4": {
@@ -24,10 +27,31 @@
         }
     },
     "require": {
-        "php": "~7.4.0||~8.0.0||~8.1.0",
+        "php": "~8.1.0 || ~8.2.0",
         "doctrine/orm": "^2.7",
         "dotkernel/dot-twigrenderer": "^3.1",
         "laminas/laminas-stratigility": "^3.9",
         "maximebf/debugbar": "^1.17"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "DotTest\\DebugBar\\": "test/"
+        }
+    },
+    "require-dev": {
+        "laminas/laminas-coding-standard": "^2.5",
+        "phpunit/phpunit": "^10.2",
+        "vimeo/psalm": "^5.13"
+    },
+    "scripts": {
+        "check": [
+            "@cs-check",
+            "@test"
+        ],
+        "cs-check": "phpcs",
+        "cs-fix": "phpcbf",
+        "test": "phpunit --colors=always",
+        "test-coverage": "phpunit --colors=always --coverage-clover clover.xml",
+        "static-analysis": "psalm --shepherd --stats"
     }
 }

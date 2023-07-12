@@ -3,20 +3,22 @@
 DotKernel's debug bar built on top of [maximebf/php-debugbar](https://github.com/maximebf/php-debugbar).
 
 ![OSS Lifecycle](https://img.shields.io/osslifecycle/dotkernel/dot-debugbar)
+![PHP from Packagist (specify version)](https://img.shields.io/packagist/php-v/dotkernel/dot-debugbar/1.1.0)
 
 [![GitHub issues](https://img.shields.io/github/issues/dotkernel/dot-debugbar)](https://github.com/dotkernel/dot-debugbar/issues)
 [![GitHub forks](https://img.shields.io/github/forks/dotkernel/dot-debugbar)](https://github.com/dotkernel/dot-debugbar/network)
 [![GitHub stars](https://img.shields.io/github/stars/dotkernel/dot-debugbar)](https://github.com/dotkernel/dot-debugbar/stargazers)
-[![GitHub license](https://img.shields.io/github/license/dotkernel/dot-debugbar)](https://github.com/dotkernel/dot-debugbar/blob/main/LICENSE.md)
+[![GitHub license](https://img.shields.io/github/license/dotkernel/dot-debugbar)](https://github.com/dotkernel/dot-debugbar/blob/1.0/LICENSE.md)
 
-![PHP from Packagist (specify version)](https://img.shields.io/packagist/php-v/dotkernel/dot-debugbar/1.0.x-dev)
+[![Build Static](https://github.com/dotkernel/dot-debugbar/actions/workflows/static-analysis.yml/badge.svg?branch=1.0)](https://github.com/dotkernel/dot-debugbar/actions/workflows/static-analysis.yml)
+
+[![SymfonyInsight](https://insight.symfony.com/projects/c1dc83af-a4b3-4a46-a80c-d87dff782089/big.svg)](https://insight.symfony.com/projects/c1dc83af-a4b3-4a46-a80c-d87dff782089)
 
 
 ## Install
 Install dot-debugbar in your application by running the following command:
-```bash
-$ composer require dotkernel/dot-debugbar
-```
+
+    composer require dotkernel/dot-debugbar
 
 
 ## Setup
@@ -27,7 +29,7 @@ Once installed, the following components need to be registered by adding:
 
 Locate the library's assets directory, called `assets` and copy **its contents** to your application under `public/debugbar` directory.
 
-Locate the library's config file `config/debugbar.local.php.dist` and clone it inside your application as:
+Locate the library's config file `config/debugbar.local.php` and clone it inside your application as:
 * `config/autoload/debugbar.local.php.dist`
 * `config/autoload/debugbar.local.php`
 
@@ -56,9 +58,9 @@ This feature can be useful if you need to add custom logic for when dot-debugbar
 Other than the data being automatically collected during a session, dot-debugbar can also be used to log messages, measure durations, debug database queries and more...
 
 When you need an instance of DebugBar, locate an instance of it in your application's container using:
-```php
-$debugBar = $container->get(\Dot\DebugBar\DebugBar::class);
-```
+
+    $debugBar = $container->get(\Dot\DebugBar\DebugBar::class);
+
 then your factory can inject `$debugBar` as a dependency in your class.
 
 OR
