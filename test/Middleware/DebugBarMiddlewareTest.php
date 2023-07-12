@@ -61,4 +61,23 @@ class DebugBarMiddlewareTest extends TestCase
         $callable = $reflection->invoke($middleware);
         $this->assertIsCallable($callable);
     }
+
+    /**
+     * @throws Exception
+     * @throws ReflectionException
+     */
+    public function testHandleThrowable(): void
+    {
+        $debugBar = $this->createMock(DebugBarInterface::class);
+        $request  = $this->createMock(ServerRequestInterface::class);
+        $response = $this->createMock(DummyResponse::class);
+
+        $response->expects($this->once())->method('__invoke')->willReturn($response);
+
+        $middleware = new DebugBarMiddleware($debugBar, $response);
+        $reflection = new ReflectionMethod(DebugBarMiddleware::class, 'handleThrowable');
+
+        $response = $reflection->invoke($middleware, new \Exception('test'), $request);
+        $this->assertInstanceOf(ResponseInterface::class, $response);
+    }
 }
