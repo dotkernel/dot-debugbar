@@ -28,7 +28,7 @@ class DebugBarExtensionTest extends TestCase
     public function testGetFunctions(): void
     {
         $dotDebugBar = $this->createMock(DebugBar::class);
-        $extension   = new DebugBarExtension($dotDebugBar, $this->config[DebugBar::class]['application']['url']);
+        $extension   = new DebugBarExtension($dotDebugBar, $this->config['application']['url']);
         $functions   = $extension->getFunctions();
         $this->assertIsArray($functions);
         $this->assertCount(3, $functions);
@@ -50,7 +50,7 @@ class DebugBarExtensionTest extends TestCase
         $dotDebugBar   = new DebugBar($configuration, []);
         $dotDebugBar->enable();
 
-        $extension = new DebugBarExtension($dotDebugBar, $this->config[DebugBar::class]['application']['url']);
+        $extension = new DebugBarExtension($dotDebugBar, $this->config['application']['url']);
         $this->assertTrue($extension->renderDebugBarEnabled());
     }
 
@@ -64,7 +64,7 @@ class DebugBarExtensionTest extends TestCase
         $dotDebugBar   = new DebugBar($configuration, []);
         $dotDebugBar->disable();
 
-        $extension = new DebugBarExtension($dotDebugBar, $this->config[DebugBar::class]['application']['url']);
+        $extension = new DebugBarExtension($dotDebugBar, $this->config['application']['url']);
         $this->assertFalse($extension->renderDebugBarEnabled());
     }
 
@@ -78,7 +78,7 @@ class DebugBarExtensionTest extends TestCase
         $dotDebugBar   = new DebugBar($configuration, []);
         $dotDebugBar->disable();
 
-        $extension = new DebugBarExtension($dotDebugBar, $this->config[DebugBar::class]['application']['url']);
+        $extension = new DebugBarExtension($dotDebugBar, $this->config['application']['url']);
         $this->assertNull($extension->renderDebugBarCss());
     }
 
@@ -92,7 +92,7 @@ class DebugBarExtensionTest extends TestCase
         $dotDebugBar   = new DebugBar($configuration, []);
         $dotDebugBar->enable();
 
-        $extension = new DebugBarExtension($dotDebugBar, $this->config[DebugBar::class]['application']['url']);
+        $extension = new DebugBarExtension($dotDebugBar, $this->config['application']['url']);
         $html      = $extension->renderDebugBarCss();
         $this->assertStringContainsString('dotkernel.css', $html);
         $this->assertStringContainsString('debugbar.css', $html);
@@ -108,7 +108,7 @@ class DebugBarExtensionTest extends TestCase
         $dotDebugBar   = new DebugBar($configuration, []);
         $dotDebugBar->disable();
 
-        $extension = new DebugBarExtension($dotDebugBar, $this->config[DebugBar::class]['application']['url']);
+        $extension = new DebugBarExtension($dotDebugBar, $this->config['application']['url']);
         $this->assertNull($extension->renderDebugBarJs());
     }
 
@@ -122,7 +122,7 @@ class DebugBarExtensionTest extends TestCase
         $dotDebugBar   = new DebugBar($configuration, []);
         $dotDebugBar->enable();
 
-        $extension = new DebugBarExtension($dotDebugBar, $this->config[DebugBar::class]['application']['url']);
+        $extension = new DebugBarExtension($dotDebugBar, $this->config['application']['url']);
         $html      = $extension->renderDebugBarJs();
         $this->assertStringContainsString('var phpdebugbar = new PhpDebugBar.DebugBar();', $html);
         $this->assertStringContainsString('debugbar.js', $html);

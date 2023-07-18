@@ -41,7 +41,6 @@ class DebugBarExtensionFactory
         ) {
             throw new Exception(DebugBarFactory::MESSAGE_MISSING_PACKAGE_CONFIG);
         }
-        $config = $config[DebugBar::class];
 
         if (
             ! array_key_exists('application', $config)
