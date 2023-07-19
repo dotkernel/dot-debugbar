@@ -14,9 +14,9 @@ trait CommonTrait
             'ipv4Whitelist'       => [],
             'ipv6Whitelist'       => [],
             'javascript_renderer' => [],
-            'application'         => [
-                'url' => 'https://example.com',
-            ],
+        ],
+        'application'   => [
+            'url' => 'https://example.com',
         ],
     ];
 }
