@@ -47,7 +47,9 @@ class DebugBarExtensionTest extends TestCase
     public function testRenderDebugBarEnabledReturnsTrueWhenEnabled(): void
     {
         $configuration = $this->createMock(Configuration::class);
-        $dotDebugBar   = new DebugBar($configuration, []);
+        $dotDebugBar   = new DebugBar($configuration, [
+            DebugBar::class => [],
+        ]);
         $dotDebugBar->enable();
 
         $extension = new DebugBarExtension($dotDebugBar, $this->config['application']['url']);
@@ -61,7 +63,9 @@ class DebugBarExtensionTest extends TestCase
     public function testRenderDebugBarEnabledReturnsFalseWhenDisabled(): void
     {
         $configuration = $this->createMock(Configuration::class);
-        $dotDebugBar   = new DebugBar($configuration, []);
+        $dotDebugBar   = new DebugBar($configuration, [
+            DebugBar::class => [],
+        ]);
         $dotDebugBar->disable();
 
         $extension = new DebugBarExtension($dotDebugBar, $this->config['application']['url']);
@@ -75,7 +79,9 @@ class DebugBarExtensionTest extends TestCase
     public function testWillNotRenderDebugBarCssWhenDisabled(): void
     {
         $configuration = $this->createMock(Configuration::class);
-        $dotDebugBar   = new DebugBar($configuration, []);
+        $dotDebugBar   = new DebugBar($configuration, [
+            DebugBar::class => [],
+        ]);
         $dotDebugBar->disable();
 
         $extension = new DebugBarExtension($dotDebugBar, $this->config['application']['url']);
@@ -89,7 +95,9 @@ class DebugBarExtensionTest extends TestCase
     public function testWillRenderDebugBarCssWhenEnabled(): void
     {
         $configuration = $this->createMock(Configuration::class);
-        $dotDebugBar   = new DebugBar($configuration, []);
+        $dotDebugBar   = new DebugBar($configuration, [
+            DebugBar::class => [],
+        ]);
         $dotDebugBar->enable();
 
         $extension = new DebugBarExtension($dotDebugBar, $this->config['application']['url']);
@@ -105,7 +113,9 @@ class DebugBarExtensionTest extends TestCase
     public function testWillNotRenderDebugBarJsWhenDisabled(): void
     {
         $configuration = $this->createMock(Configuration::class);
-        $dotDebugBar   = new DebugBar($configuration, []);
+        $dotDebugBar   = new DebugBar($configuration, [
+            DebugBar::class => [],
+        ]);
         $dotDebugBar->disable();
 
         $extension = new DebugBarExtension($dotDebugBar, $this->config['application']['url']);
@@ -119,7 +129,9 @@ class DebugBarExtensionTest extends TestCase
     public function testWillRenderDebugBarJsWhenEnabled(): void
     {
         $configuration = $this->createMock(Configuration::class);
-        $dotDebugBar   = new DebugBar($configuration, []);
+        $dotDebugBar   = new DebugBar($configuration, [
+            DebugBar::class => [],
+        ]);
         $dotDebugBar->enable();
 
         $extension = new DebugBarExtension($dotDebugBar, $this->config['application']['url']);

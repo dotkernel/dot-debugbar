@@ -58,7 +58,7 @@ class DebugBar extends \DebugBar\DebugBar implements DebugBarInterface
         $this->addCollector($this->timeDataCollector = new TimeDataCollector());
         $this->addCollector($this->exceptionsCollector = new ExceptionsCollector());
 
-        $this->config = $config;
+        $this->config = $config[self::class];
 
         $this->getJavascriptRenderer()->addAssets(
             [
