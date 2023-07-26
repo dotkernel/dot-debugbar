@@ -75,7 +75,7 @@ class DebugBarFactory
         $em = $container->get(EntityManager::class);
         return new DebugBar(
             $em->getConnection()->getConfiguration(),
-            $config
+            $container->get('config')
         );
     }
 }
