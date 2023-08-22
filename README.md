@@ -11,6 +11,7 @@ DotKernel's debug bar built on top of [maximebf/php-debugbar](https://github.com
 [![GitHub license](https://img.shields.io/github/license/dotkernel/dot-debugbar)](https://github.com/dotkernel/dot-debugbar/blob/1.0/LICENSE.md)
 
 [![Build Static](https://github.com/dotkernel/dot-debugbar/actions/workflows/static-analysis.yml/badge.svg?branch=1.0)](https://github.com/dotkernel/dot-debugbar/actions/workflows/static-analysis.yml)
+[![codecov](https://codecov.io/gh/dotkernel/dot-debugbar/graph/badge.svg?token=F0N8VWKTDW)](https://codecov.io/gh/dotkernel/dot-debugbar)
 
 [![SymfonyInsight](https://insight.symfony.com/projects/c1dc83af-a4b3-4a46-a80c-d87dff782089/big.svg)](https://insight.symfony.com/projects/c1dc83af-a4b3-4a46-a80c-d87dff782089)
 
