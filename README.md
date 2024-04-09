@@ -44,7 +44,6 @@ Finally, if you want to keep the whitelists but disable dot-debugbar, you can se
 Inside the config file, you will find additional configurations under the `javascript_renderer` key.
 For more configuration values, follow the link in the related comment block.
 
-
 At this step, dot-debugbar is not displayed yet. In order to display it, you need to call the following Twig functions from your base layout:
 
 * `{{ debugBarCss()|raw }}` (needs to be placed in the head section of the layout, where the CSS files are included)
@@ -75,7 +74,6 @@ If you are using [dot-annotated-services](https://github.com/dotkernel/dot-annot
 Once an instance of DebugBar has been injected in your code, you can access all its features.
 The below examples will assume you already have an instance of DebugBar in your code, and it's callable using `$this->debugBar`.
 
-
 ### Logging messages
 
 Results will show up in the debug bar under the `Messages` tab.
@@ -97,7 +95,6 @@ Log messages and set custom label by specifying the 2nd argument (you can use an
     $this->debugBar->addMessage('custom message', 'custom');
 
 Also, clicking on a label (found on the bottom right of the debugbar) will toggle the visibility of all messages with that specific label.
-
 
 ### Measure durations
 

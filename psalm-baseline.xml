@@ -7,10 +7,4 @@
             <code>getJavascriptRenderer</code>
         </UndefinedInterfaceMethod>
     </file>
-    <file src="src/Factory/DebugBarMiddlewareFactory.php">
-        <UndefinedClass>
-            <code>ErrorResponseGenerator</code>
-            <code>ErrorResponseGenerator</code>
-        </UndefinedClass>
-    </file>
 </files>
