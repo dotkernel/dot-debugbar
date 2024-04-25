@@ -46,3 +46,6 @@ package-lock.json
 .project
 .buildpath
 .settings/
+
+/documentation-theme/
+/docs/html/

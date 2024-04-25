@@ -1,0 +1,24 @@
+docs_dir: docs/book
+site_dir: docs/html
+extra:
+  project: Packages
+  current_version: v1
+  versions:
+    - v1
+nav:
+  - Home: index.md
+  - v5:
+      - Overview: v1/overview.md
+      - Installation: v1/installation.md
+      - Setup: v1/setup.md
+      - Usage:
+          - Overview: v1/usage.md
+          - "Logging messages": v1/usage/logging-messages.md
+          - "Measure durations": v1/usage/measure-durations.md
+          - "Debug Doctrine queries": v1/usage/debug-doctrine-queries.md
+          - "Debug Exceptions": v1/usage/debug-exceptions.md
+site_name: dot-annotated-services
+site_description: "DotKernel's debug bar component"
+repo_url: "https://github.com/dotkernel/dot-debugbar"
+plugins:
+  - search
