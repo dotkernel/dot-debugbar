@@ -7,7 +7,7 @@ extra:
     - v1
 nav:
   - Home: index.md
-  - v5:
+  - v1:
       - Overview: v1/overview.md
       - Installation: v1/installation.md
       - Setup: v1/setup.md
