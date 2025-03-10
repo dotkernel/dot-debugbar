@@ -14,7 +14,7 @@ use const PHP_EOL;
 
 class DebugBarExtension extends AbstractExtension
 {
-    private ?string $baseUrl;
+    private ?string $baseUrl = null;
     private DebugBarInterface $debugBar;
 
     public function __construct(DebugBarInterface $debugBar, string $baseUrl)

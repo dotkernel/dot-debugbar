@@ -17,11 +17,6 @@ class DebugBarExtensionTest extends TestCase
 {
     use CommonTrait;
 
-    public function testConstructor(): void
-    {
-        $this->assertNull(null);
-    }
-
     /**
      * @throws Exception
      */

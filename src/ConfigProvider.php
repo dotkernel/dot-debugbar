@@ -13,9 +13,6 @@ use Dot\DebugBar\Middleware\DebugBarMiddlewareInterface;
 
 class ConfigProvider
 {
-    /**
-     * @return array
-     */
     public function __invoke(): array
     {
         return [
@@ -23,9 +20,6 @@ class ConfigProvider
         ];
     }
 
-    /**
-     * @return array
-     */
     public function getDependencyConfig(): array
     {
         return [

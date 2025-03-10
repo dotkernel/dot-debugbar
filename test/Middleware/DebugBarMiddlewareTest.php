@@ -25,7 +25,7 @@ class DebugBarMiddlewareTest extends TestCase
     {
         $debugBar   = $this->createMock(DebugBarInterface::class);
         $middleware = new DebugBarMiddleware($debugBar, new DummyResponse());
-        $this->assertInstanceOf(DebugBarMiddlewareInterface::class, $middleware);
+        $this->assertContainsOnlyInstancesOf(DebugBarMiddlewareInterface::class, [$middleware]);
     }
 
     /**
@@ -45,7 +45,7 @@ class DebugBarMiddlewareTest extends TestCase
 
         $middleware = new DebugBarMiddleware($debugBar, new DummyResponse());
         $response   = $middleware->process($request, $handler);
-        $this->assertInstanceOf(ResponseInterface::class, $response);
+        $this->assertContainsOnlyInstancesOf(ResponseInterface::class, [$response]);
     }
 
     /**

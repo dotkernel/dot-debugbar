@@ -1,14 +1,17 @@
 # dot-debugbar
 
-> [!IMPORTANT]
-> dot-debugbar is a wrapper on top of [maximebf/php-debugbar](https://github.com/maximebf/php-debugbar)
->
-> ![OSS Lifecycle](https://img.shields.io/osslifecycle/maximebf/php-debugbar)
+Dotkernel's debug bar component
 
-## dot-debugbar badges
+> dot-debugbar is a wrapper on top of [maximebf/php-debugbar](https://github.com/maximebf/php-debugbar)
+
+## Documentation
+
+Documentation is available at: https://docs.dotkernel.org/dot-debugbar/.
+
+## Badges
 
 ![OSS Lifecycle](https://img.shields.io/osslifecycle/dotkernel/dot-debugbar)
-![PHP from Packagist (specify version)](https://img.shields.io/packagist/php-v/dotkernel/dot-debugbar/1.2.0)
+![PHP from Packagist (specify version)](https://img.shields.io/packagist/php-v/dotkernel/dot-debugbar/1.3.0)
 
 [![GitHub issues](https://img.shields.io/github/issues/dotkernel/dot-debugbar)](https://github.com/dotkernel/dot-debugbar/issues)
 [![GitHub forks](https://img.shields.io/github/forks/dotkernel/dot-debugbar)](https://github.com/dotkernel/dot-debugbar/network)
@@ -18,8 +21,8 @@
 [![Build Static](https://github.com/dotkernel/dot-debugbar/actions/workflows/continuous-integration.yml/badge.svg?branch=1.0)](https://github.com/dotkernel/dot-debugbar/actions/workflows/continuous-integration.yml)
 [![codecov](https://codecov.io/gh/dotkernel/dot-debugbar/graph/badge.svg?token=F0N8VWKTDW)](https://codecov.io/gh/dotkernel/dot-debugbar)
 [![docs-build](https://github.com/dotkernel/dot-debugbar/actions/workflows/docs-build.yml/badge.svg)](https://github.com/dotkernel/dot-debugbar/actions/workflows/docs-build.yml)
+[![PHPStan](https://github.com/dotkernel/dot-debugbar/actions/workflows/static-analysis.yml/badge.svg?branch=1.0)](https://github.com/dotkernel/dot-debugbar/actions/workflows/static-analysis.yml)
 
-[![SymfonyInsight](https://insight.symfony.com/projects/c1dc83af-a4b3-4a46-a80c-d87dff782089/big.svg)](https://insight.symfony.com/projects/c1dc83af-a4b3-4a46-a80c-d87dff782089)
 
 ## Install
 
@@ -32,7 +35,7 @@ Install dot-debugbar in your application by running the following command:
 Once installed, the following components need to be registered by adding:
 
 * `$app->pipe(\Dot\DebugBar\Middleware\DebugBarMiddleware::class);` to `config/pipeline.php` (preferably after `ServerUrlMiddleware::class`)
-* `\Dot\DebugBar\ConfigProvider::class,` to `config/config.php` (preferably at the beginning of the section where the `DotKernel packages` are loaded)
+* `\Dot\DebugBar\ConfigProvider::class,` to `config/config.php` (preferably at the beginning of the section where the `Dotkernel packages` are loaded)
 * `\Dot\DebugBar\Extension\DebugBarExtension::class` to `config/autoload/templates.global.php` (inside the array founder under the key `twig` => `extensions`)
 
 Locate the library's assets directory, called `assets` and copy **its contents** to your application under `public/debugbar` directory.

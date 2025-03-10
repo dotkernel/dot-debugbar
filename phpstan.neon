@@ -1,0 +1,15 @@
+includes:
+    - vendor/phpstan/phpstan-phpunit/extension.neon
+parameters:
+    level: 5
+    paths:
+        - src
+        - test
+    treatPhpDocTypesAsCertain: false
+    excludePaths:
+        - test/DummyResponse.php
+    ignoreErrors:
+        - message: '#Call to an undefined method .*::getJavascriptRenderer\(\)\.#'
+          path: src/Extension/DebugBarExtension.php
+        - message: '#.* is never read, only written.#'
+          path: src/DebugBar.php

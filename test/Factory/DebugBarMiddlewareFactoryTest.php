@@ -78,6 +78,6 @@ class DebugBarMiddlewareFactoryTest extends TestCase
         ]);
 
         $middleware = (new DebugBarMiddlewareFactory())($container);
-        $this->assertInstanceOf(DebugBarMiddlewareInterface::class, $middleware);
+        $this->assertContainsOnlyInstancesOf(DebugBarMiddlewareInterface::class, [$middleware]);
     }
 }

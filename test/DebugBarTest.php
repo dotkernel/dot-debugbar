@@ -22,7 +22,7 @@ class DebugBarTest extends TestCase
     {
         $configuration = $this->createMock(Configuration::class);
         $dotDebugBar   = new DebugBar($configuration, $this->config);
-        $this->assertInstanceOf(DebugBar::class, $dotDebugBar);
+        $this->assertSame(DebugBar::class, $dotDebugBar::class);
     }
 
     /**
@@ -135,10 +135,10 @@ class DebugBarTest extends TestCase
         $dotDebugBar   = new DebugBar($configuration, $this->config);
         $this->assertFalse($dotDebugBar->isEnabled());
         $dotDebugBar->enable();
-        $this->assertInstanceOf(DebugBar::class, $dotDebugBar);
+        $this->assertSame(DebugBar::class, $dotDebugBar::class);
         $this->assertTrue($dotDebugBar->isEnabled());
         $dotDebugBar->disable();
-        $this->assertInstanceOf(DebugBar::class, $dotDebugBar);
+        $this->assertSame(DebugBar::class, $dotDebugBar::class);
         $this->assertFalse($dotDebugBar->isEnabled());
     }
 
@@ -152,7 +152,7 @@ class DebugBarTest extends TestCase
         $dotDebugBar   = new DebugBar($configuration, $this->config);
         $this->assertCount(0, $dotDebugBar->getMessagesCollector()->getMessages());
         $dotDebugBar->addMessage('test');
-        $this->assertInstanceOf(DebugBar::class, $dotDebugBar);
+        $this->assertSame(DebugBar::class, $dotDebugBar::class);
         $this->assertCount(1, $dotDebugBar->getMessagesCollector()->getMessages());
     }
 
@@ -166,10 +166,10 @@ class DebugBarTest extends TestCase
         $dotDebugBar   = new DebugBar($configuration, $this->config);
         $this->assertFalse($dotDebugBar->getTimeDataCollector()->hasStartedMeasure('test'));
         $dotDebugBar->startTimer('test');
-        $this->assertInstanceOf(DebugBar::class, $dotDebugBar);
+        $this->assertSame(DebugBar::class, $dotDebugBar::class);
         $this->assertTrue($dotDebugBar->getTimeDataCollector()->hasStartedMeasure('test'));
         $dotDebugBar->stopTimer('test');
-        $this->assertInstanceOf(DebugBar::class, $dotDebugBar);
+        $this->assertSame(DebugBar::class, $dotDebugBar::class);
         $this->assertFalse($dotDebugBar->getTimeDataCollector()->hasStartedMeasure('test'));
     }
 
@@ -183,7 +183,7 @@ class DebugBarTest extends TestCase
         $dotDebugBar   = new DebugBar($configuration, $this->config);
         $this->assertCount(0, $dotDebugBar->getExceptionsCollector()->getExceptions());
         $dotDebugBar->addThrowable(new \Exception('test'));
-        $this->assertInstanceOf(DebugBar::class, $dotDebugBar);
+        $this->assertSame(DebugBar::class, $dotDebugBar::class);
         $this->assertCount(1, $dotDebugBar->getExceptionsCollector()->getExceptions());
     }
 }

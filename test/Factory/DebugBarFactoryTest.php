@@ -214,6 +214,6 @@ class DebugBarFactoryTest extends TestCase
         $connection->expects($this->once())->method('getConfiguration')->willReturn($configuration);
 
         $service = (new DebugBarFactory())($container);
-        $this->assertInstanceOf(DebugBarInterface::class, $service);
+        $this->assertContainsOnlyInstancesOf(DebugBarInterface::class, [$service]);
     }
 }

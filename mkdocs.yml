@@ -18,7 +18,7 @@ nav:
           - "Debug Doctrine queries": v1/usage/debug-doctrine-queries.md
           - "Debug Exceptions": v1/usage/debug-exceptions.md
 site_name: dot-debugbar
-site_description: "DotKernel's debug bar component"
+site_description: "Dotkernel's debug bar component"
 repo_url: "https://github.com/dotkernel/dot-debugbar"
 plugins:
   - search
