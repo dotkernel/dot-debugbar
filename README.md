@@ -38,14 +38,19 @@ Once installed, the following components need to be registered by adding:
 ```php
 $app->pipe(\Dot\DebugBar\Middleware\DebugBarMiddleware::class);
 ``` 
+
 to `config/pipeline.php` (preferably after `ServerUrlMiddleware::class`)
+
 ```php
 \Dot\DebugBar\ConfigProvider::class
 ```
+
 to `config/config.php` (preferably at the beginning of the section where the `Dotkernel packages` are loaded)
+
 ```php
 \Dot\DebugBar\Extension\DebugBarExtension::class
 ```
+
 to `config/autoload/templates.global.php` (inside the array founder under the key `twig` => `extensions`)
 
 Locate the library's assets directory, called `assets` and copy **its contents** to your application under `public/debugbar` directory.
