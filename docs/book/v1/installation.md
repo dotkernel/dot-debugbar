@@ -2,4 +2,6 @@
 
 Install `dotkernel/dot-debugbar` by executing the following Composer command:
 
-    composer require dotkernel/dot-debugbar
+```shell
+composer require dotkernel/dot-debugbar
+```

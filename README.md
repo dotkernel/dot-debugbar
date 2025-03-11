@@ -76,7 +76,7 @@ At this step, dot-debugbar is not displayed yet. In order to display it, you nee
 
 (needs to be placed in the head section of the layout, where the CSS files are included)
 
-```Twig
+```twig
 {{ debugBarJs()|raw }}
 ```
 
