@@ -37,7 +37,7 @@ Once installed, the following components need to be registered by adding:
 
 ```php
 $app->pipe(\Dot\DebugBar\Middleware\DebugBarMiddleware::class);
-``` 
+```
 
 to `config/pipeline.php` (preferably after `ServerUrlMiddleware::class`)
 
@@ -73,11 +73,13 @@ At this step, dot-debugbar is not displayed yet. In order to display it, you nee
 ```Twig
 {{ debugBarCss()|raw }}
 ```
+
 (needs to be placed in the head section of the layout, where the CSS files are included)
 
 ```Twig
 {{ debugBarJs()|raw }}
 ```
+
 (needs to be placed in the footer of the layout, where the JS files are included)
 
 If you plan to enable dot-debugbar on production, make sure you clear the relevant cache items by deleting:
