@@ -36,7 +36,7 @@
         "mezzio/mezzio": "^3.18.0",
         "psr/container": "^1.1.2",
         "psr/http-message": "^1.1.0",
-        "twig/twig": "v3.14.0"
+        "twig/twig": "v3.19.0"
     },
     "autoload-dev": {
         "psr-4": {
