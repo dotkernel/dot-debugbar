@@ -28,7 +28,7 @@ Documentation is available at: https://docs.dotkernel.org/dot-debugbar/.
 Install dot-debugbar in your application by running the following command:
 
 ```shell
-    composer require dotkernel/dot-debugbar
+composer require dotkernel/dot-debugbar
 ```
 
 ## Setup
@@ -70,7 +70,7 @@ For more configuration values, follow the link in the related comment block.
 
 At this step, dot-debugbar is not displayed yet. In order to display it, you need to call the following Twig functions from your base layout:
 
-```Twig
+```twig
 {{ debugBarCss()|raw }}
 ```
 
