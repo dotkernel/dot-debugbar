@@ -4,7 +4,9 @@ Other than the data being automatically collected during a session, dot-debugbar
 
 When you need an instance of DebugBar, locate an instance of it in your application's container using:
 
-    $debugBar = $container->get(\Dot\DebugBar\DebugBar::class);
+```php
+$debugBar = $container->get(\Dot\DebugBar\DebugBar::class);
+```
 
 then your factory can inject `$debugBar` as a dependency in your class.
 

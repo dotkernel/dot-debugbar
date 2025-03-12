@@ -2,8 +2,10 @@
 
 declare(strict_types=1);
 
+use Dot\DebugBar\DebugBar;
+
 return [
-    Dot\DebugBar\DebugBar::class => [
+    DebugBar::class => [
         /**
          * Enable/Disable DebugBar
          */

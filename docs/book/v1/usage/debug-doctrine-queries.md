@@ -6,7 +6,7 @@ By default, all queries executed in order to load a page will be logged and disp
 If you submit a form that will perform a redirect, you won't see the executed CREATE/UPDATE queries unless you stack the collected data:
 
 ```php
-    $this->debugBar->stackData();
+$this->debugBar->stackData();
 ```
 
 The method needs to be called after all database operations have finished AND before emitting the redirect response.

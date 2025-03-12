@@ -2,9 +2,25 @@
 
 Once installed, the following components need to be registered by adding:
 
-* `$app->pipe(\Dot\DebugBar\Middleware\DebugBarMiddleware::class);` to `config/pipeline.php` (preferably after `ServerUrlMiddleware::class`)
-* `\Dot\DebugBar\ConfigProvider::class,` to `config/config.php` (preferably at the beginning of the section where the `DotKernel packages` are loaded)
-* `\Dot\DebugBar\Extension\DebugBarExtension::class` to `config/autoload/templates.global.php` (inside the array founder under the key `twig` => `extensions`)
+Once installed, the following components need to be registered by adding:
+
+```php
+$app->pipe(\Dot\DebugBar\Middleware\DebugBarMiddleware::class);
+```
+
+to `config/pipeline.php` (preferably after `ServerUrlMiddleware::class`)
+
+```php
+\Dot\DebugBar\ConfigProvider::class
+```
+
+to `config/config.php` (preferably at the beginning of the section where the `Dotkernel packages` are loaded)
+
+```php
+\Dot\DebugBar\Extension\DebugBarExtension::class
+```
+
+to `config/autoload/templates.global.php` (inside the array founder under the key `twig` => `extensions`)
 
 Locate the library's assets directory, called `assets` and copy **its contents** to your application under `public/debugbar` directory.
 
@@ -26,8 +42,17 @@ For more configuration values, follow the link in the related comment block.
 
 At this step, dot-debugbar is not displayed yet. In order to display it, you need to call the following Twig functions from your base layout:
 
-* `{{ debugBarCss()|raw }}` (needs to be placed in the head section of the layout, where the CSS files are included)
-* `{{ debugBarJs()|raw }}` (needs to be placed in the footer of the layout, where the JS files are included)
+```twig
+{{ debugBarCss()|raw }}
+```
+
+(needs to be placed in the head section of the layout, where the CSS files are included)
+
+```twig
+{{ debugBarJs()|raw }}
+```
+
+(needs to be placed in the footer of the layout, where the JS files are included)
 
 If you plan to enable dot-debugbar on production, make sure you clear the relevant cache items by deleting:
 

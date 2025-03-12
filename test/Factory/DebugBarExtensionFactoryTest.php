@@ -98,6 +98,6 @@ class DebugBarExtensionFactoryTest extends TestCase
         ]);
 
         $extension = (new DebugBarExtensionFactory())($container);
-        $this->assertInstanceOf(DebugBarExtension::class, $extension);
+        $this->assertContainsOnlyInstancesOf(DebugBarExtension::class, [$extension]);
     }
 }

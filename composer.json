@@ -1,6 +1,6 @@
 {
     "name": "dotkernel/dot-debugbar",
-    "description": "DotKernel's debug bar built on top of maximebf/debugbar",
+    "description": "Dotkernel's debug bar built on top of maximebf/debugbar",
     "type": "library",
     "license": "MIT",
     "homepage": "https://github.com/dotkernel/dot-debugbar",
@@ -11,7 +11,7 @@
     ],
     "authors": [
         {
-            "name": "DotKernel Team",
+            "name": "Dotkernel Team",
             "email": "team@dotkernel.com"
         }
     ],
@@ -36,7 +36,7 @@
         "mezzio/mezzio": "^3.18.0",
         "psr/container": "^1.1.2",
         "psr/http-message": "^1.1.0",
-        "twig/twig": "v3.14.0"
+        "twig/twig": "^v3.19.0"
     },
     "autoload-dev": {
         "psr-4": {
@@ -44,19 +44,20 @@
         }
     },
     "require-dev": {
-        "laminas/laminas-coding-standard": "^2.5",
-        "phpunit/phpunit": "^10.5.7",
-        "vimeo/psalm": "^5.19.1"
+        "laminas/laminas-coding-standard": "^3.0",
+        "phpstan/phpstan": "^2.1",
+        "phpstan/phpstan-phpunit": "^2.0",
+        "phpunit/phpunit": "^10.5.7"
     },
     "scripts": {
         "check": [
             "@cs-check",
-            "@test"
+            "@test",
+            "@static-analysis"
         ],
         "cs-check": "phpcs",
         "cs-fix": "phpcbf",
         "test": "phpunit --colors=always",
-        "test-coverage": "phpunit --colors=always --coverage-clover clover.xml",
-        "static-analysis": "psalm --shepherd --stats"
+        "static-analysis": "phpstan analyse --memory-limit 1G"
     }
 }

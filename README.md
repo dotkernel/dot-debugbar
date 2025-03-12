@@ -1,14 +1,17 @@
 # dot-debugbar
 
-> [!IMPORTANT]
-> dot-debugbar is a wrapper on top of [maximebf/php-debugbar](https://github.com/maximebf/php-debugbar)
->
-> ![OSS Lifecycle](https://img.shields.io/osslifecycle/maximebf/php-debugbar)
+Dotkernel's debug bar component
 
-## dot-debugbar badges
+> dot-debugbar is a wrapper on top of [maximebf/php-debugbar](https://github.com/maximebf/php-debugbar)
+
+## Documentation
+
+Documentation is available at: https://docs.dotkernel.org/dot-debugbar/.
+
+## Badges
 
 ![OSS Lifecycle](https://img.shields.io/osslifecycle/dotkernel/dot-debugbar)
-![PHP from Packagist (specify version)](https://img.shields.io/packagist/php-v/dotkernel/dot-debugbar/1.2.0)
+![PHP from Packagist (specify version)](https://img.shields.io/packagist/php-v/dotkernel/dot-debugbar/1.3.0)
 
 [![GitHub issues](https://img.shields.io/github/issues/dotkernel/dot-debugbar)](https://github.com/dotkernel/dot-debugbar/issues)
 [![GitHub forks](https://img.shields.io/github/forks/dotkernel/dot-debugbar)](https://github.com/dotkernel/dot-debugbar/network)
@@ -18,22 +21,37 @@
 [![Build Static](https://github.com/dotkernel/dot-debugbar/actions/workflows/continuous-integration.yml/badge.svg?branch=1.0)](https://github.com/dotkernel/dot-debugbar/actions/workflows/continuous-integration.yml)
 [![codecov](https://codecov.io/gh/dotkernel/dot-debugbar/graph/badge.svg?token=F0N8VWKTDW)](https://codecov.io/gh/dotkernel/dot-debugbar)
 [![docs-build](https://github.com/dotkernel/dot-debugbar/actions/workflows/docs-build.yml/badge.svg)](https://github.com/dotkernel/dot-debugbar/actions/workflows/docs-build.yml)
-
-[![SymfonyInsight](https://insight.symfony.com/projects/c1dc83af-a4b3-4a46-a80c-d87dff782089/big.svg)](https://insight.symfony.com/projects/c1dc83af-a4b3-4a46-a80c-d87dff782089)
+[![PHPStan](https://github.com/dotkernel/dot-debugbar/actions/workflows/static-analysis.yml/badge.svg?branch=1.0)](https://github.com/dotkernel/dot-debugbar/actions/workflows/static-analysis.yml)
 
 ## Install
 
 Install dot-debugbar in your application by running the following command:
 
-    composer require dotkernel/dot-debugbar
+```shell
+composer require dotkernel/dot-debugbar
+```
 
 ## Setup
 
 Once installed, the following components need to be registered by adding:
 
-* `$app->pipe(\Dot\DebugBar\Middleware\DebugBarMiddleware::class);` to `config/pipeline.php` (preferably after `ServerUrlMiddleware::class`)
-* `\Dot\DebugBar\ConfigProvider::class,` to `config/config.php` (preferably at the beginning of the section where the `DotKernel packages` are loaded)
-* `\Dot\DebugBar\Extension\DebugBarExtension::class` to `config/autoload/templates.global.php` (inside the array founder under the key `twig` => `extensions`)
+```php
+$app->pipe(\Dot\DebugBar\Middleware\DebugBarMiddleware::class);
+```
+
+to `config/pipeline.php` (preferably after `ServerUrlMiddleware::class`)
+
+```php
+\Dot\DebugBar\ConfigProvider::class
+```
+
+to `config/config.php` (preferably at the beginning of the section where the `Dotkernel packages` are loaded)
+
+```php
+\Dot\DebugBar\Extension\DebugBarExtension::class
+```
+
+to `config/autoload/templates.global.php` (inside the array founder under the key `twig` => `extensions`)
 
 Locate the library's assets directory, called `assets` and copy **its contents** to your application under `public/debugbar` directory.
 
@@ -52,8 +70,17 @@ For more configuration values, follow the link in the related comment block.
 
 At this step, dot-debugbar is not displayed yet. In order to display it, you need to call the following Twig functions from your base layout:
 
-* `{{ debugBarCss()|raw }}` (needs to be placed in the head section of the layout, where the CSS files are included)
-* `{{ debugBarJs()|raw }}` (needs to be placed in the footer of the layout, where the JS files are included)
+```twig
+{{ debugBarCss()|raw }}
+```
+
+(needs to be placed in the head section of the layout, where the CSS files are included)
+
+```twig
+{{ debugBarJs()|raw }}
+```
+
+(needs to be placed in the footer of the layout, where the JS files are included)
 
 If you plan to enable dot-debugbar on production, make sure you clear the relevant cache items by deleting:
 
@@ -69,7 +96,9 @@ Other than the data being automatically collected during a session, dot-debugbar
 
 When you need an instance of DebugBar, locate an instance of it in your application's container using:
 
-    $debugBar = $container->get(\Dot\DebugBar\DebugBar::class);
+```php
+$debugBar = $container->get(\Dot\DebugBar\DebugBar::class);
+```
 
 then your factory can inject `$debugBar` as a dependency in your class.
 
@@ -86,19 +115,23 @@ Results will show up in the debug bar under the `Messages` tab.
 
 Log messages (can be of any type):
 
-    $this->debugBar->addMessage(1);
-    $this->debugBar->addMessage(true);
-    $this->debugBar->addMessage('foo');
-    $this->debugBar->addMessage(['foo']);
-    $this->debugBar->addMessage(new \stdClass());
+```php
+$this->debugBar->addMessage(1);
+$this->debugBar->addMessage(true);
+$this->debugBar->addMessage('foo');
+$this->debugBar->addMessage(['foo']);
+$this->debugBar->addMessage(new \stdClass());
+```
 
 Log messages and set custom label by specifying the 2nd argument (you can use any label, but `error` and `warning` use custom highlight and icons):
 
-    $exception = new \Exception('something went wrong');
-    $this->debugBar->addMessage($exception, 'error');
-    $this->debugBar->addMessage($exception->getMessage(), 'error');
-    $this->debugBar->addMessage('some warning', 'warning');
-    $this->debugBar->addMessage('custom message', 'custom');
+```php
+$exception = new \Exception('something went wrong');
+$this->debugBar->addMessage($exception, 'error');
+$this->debugBar->addMessage($exception->getMessage(), 'error');
+$this->debugBar->addMessage('some warning', 'warning');
+$this->debugBar->addMessage('custom message', 'custom');
+```
 
 Also, clicking on a label (found on the bottom right of the debugbar) will toggle the visibility of all messages with that specific label.
 
@@ -108,15 +141,19 @@ Results will show up in the debug bar under the `Timeline` tab.
 
 In order to measure how long does it take for a piece of code to execute, do the following:
 
-    $this->debugBar->measure('long operation', function () {
-        // your code here
-    });
+```php
+$this->debugBar->measure('long operation', function () {
+    // your code here
+});
+```
 
 OR
 
-    $this->debugBar->startTimer('long operation', 'measuring long operation');
-    // your code here
-    $this->debugBar->stopTimer('long operation');
+```php
+$this->debugBar->startTimer('long operation', 'measuring long operation');
+// your code here
+$this->debugBar->stopTimer('long operation');
+```
 
 ### Debug Doctrine queries
 
@@ -125,7 +162,9 @@ Results will show up in the debug bar under the `Database` tab.
 By default, all queries executed in order to load a page will be logged and displayed under this tab.
 If you submit a form that will perform a redirect, you won't see the executed CREATE/UPDATE queries unless you stack the collected data:
 
-    $this->debugBar->stackData();
+```php
+$this->debugBar->stackData();
+```
 
 The method needs to be called after all database operations have finished AND before emitting the redirect response.
 In this case, next to the `Memory usage` widget you'll see a dropdown that allows you to select between the previous page load (with the redirect) and the current one.
