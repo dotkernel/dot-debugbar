@@ -4,6 +4,10 @@ Dotkernel's debug bar component
 
 > dot-debugbar is a wrapper on top of [maximebf/php-debugbar](https://github.com/maximebf/php-debugbar)
 
+## NOTE
+
+> **dot-debugbar** is **abandoned** and will receive no further development!
+
 ## Badges
 
 ![OSS Lifecycle](https://img.shields.io/osslifecycle/dotkernel/dot-debugbar)
