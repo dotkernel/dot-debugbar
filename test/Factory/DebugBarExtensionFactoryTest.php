@@ -26,7 +26,7 @@ class DebugBarExtensionFactoryTest extends TestCase
      */
     public function testWillNotCreateExtensionWithoutConfig(): void
     {
-        $container = $this->createMock(ContainerInterface::class);
+        $container = $this->createStub(ContainerInterface::class);
 
         $container->method('has')->willReturnMap([
             [DebugBarInterface::class, true],
@@ -44,7 +44,7 @@ class DebugBarExtensionFactoryTest extends TestCase
      */
     public function testWillNotCreateExtensionWithoutPackageConfig(): void
     {
-        $container = $this->createMock(ContainerInterface::class);
+        $container = $this->createStub(ContainerInterface::class);
 
         $container->method('has')->willReturnMap([
             [DebugBarInterface::class, true],
@@ -66,7 +66,7 @@ class DebugBarExtensionFactoryTest extends TestCase
      */
     public function testWillNotCreateExtensionWithoutDebugBar(): void
     {
-        $container = $this->createMock(ContainerInterface::class);
+        $container = $this->createStub(ContainerInterface::class);
 
         $container->method('has')->willReturnMap([
             ['config', true],
@@ -84,8 +84,8 @@ class DebugBarExtensionFactoryTest extends TestCase
      */
     public function testWillCreateExtension(): void
     {
-        $container = $this->createMock(ContainerInterface::class);
-        $debugBar  = $this->createMock(DebugBarInterface::class);
+        $container = $this->createStub(ContainerInterface::class);
+        $debugBar  = $this->createStub(DebugBarInterface::class);
 
         $container->method('has')->willReturnMap([
             ['config', true],

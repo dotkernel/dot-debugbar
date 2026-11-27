@@ -46,7 +46,7 @@ class DebugBarMiddlewareFactoryTest extends TestCase
      */
     public function testWillNotCreateServiceWithoutResponseInterface(): void
     {
-        $container = $this->createMock(ContainerInterface::class);
+        $container = $this->createStub(ContainerInterface::class);
 
         $container->method('has')->willReturnMap([
             [DebugBarInterface::class, true],
@@ -64,8 +64,8 @@ class DebugBarMiddlewareFactoryTest extends TestCase
      */
     public function testWillCreateMiddleware(): void
     {
-        $container = $this->createMock(ContainerInterface::class);
-        $debugBar  = $this->createMock(DebugBarInterface::class);
+        $container = $this->createStub(ContainerInterface::class);
+        $debugBar  = $this->createStub(DebugBarInterface::class);
 
         $container->method('has')->willReturnMap([
             [DebugBarInterface::class, true],
