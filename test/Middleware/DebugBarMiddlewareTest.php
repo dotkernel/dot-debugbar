@@ -23,7 +23,7 @@ class DebugBarMiddlewareTest extends TestCase
      */
     public function testCanCreateMiddleware(): void
     {
-        $debugBar   = $this->createMock(DebugBarInterface::class);
+        $debugBar   = $this->createStub(DebugBarInterface::class);
         $middleware = new DebugBarMiddleware($debugBar, new DummyResponse());
         $this->assertContainsOnlyInstancesOf(DebugBarMiddlewareInterface::class, [$middleware]);
     }
@@ -35,7 +35,7 @@ class DebugBarMiddlewareTest extends TestCase
     {
         $debugBar = $this->createMock(DebugBarInterface::class);
         $request  = $this->createMock(ServerRequestInterface::class);
-        $handler  = $this->createMock(RequestHandlerInterface::class);
+        $handler  = $this->createStub(RequestHandlerInterface::class);
 
         $request->expects($this->once())->method('getServerParams')->willReturn([
             'REMOTE_ADDR' => '127.0.0.1',
@@ -54,7 +54,7 @@ class DebugBarMiddlewareTest extends TestCase
      */
     public function testCreateErrorHandler(): void
     {
-        $debugBar   = $this->createMock(DebugBarInterface::class);
+        $debugBar   = $this->createStub(DebugBarInterface::class);
         $middleware = new DebugBarMiddleware($debugBar, new DummyResponse());
         $reflection = new ReflectionMethod(DebugBarMiddleware::class, 'createErrorHandler');
 

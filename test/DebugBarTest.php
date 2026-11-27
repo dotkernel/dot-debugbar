@@ -20,7 +20,7 @@ class DebugBarTest extends TestCase
      */
     public function testCanCreate(): void
     {
-        $configuration = $this->createMock(Configuration::class);
+        $configuration = $this->createStub(Configuration::class);
         $dotDebugBar   = new DebugBar($configuration, $this->config);
         $this->assertSame(DebugBar::class, $dotDebugBar::class);
     }
@@ -33,7 +33,7 @@ class DebugBarTest extends TestCase
     {
         $config                             = $this->config;
         $config[DebugBar::class]['enabled'] = false;
-        $configuration                      = $this->createMock(Configuration::class);
+        $configuration                      = $this->createStub(Configuration::class);
         $dotDebugBar                        = new DebugBar($configuration, $config);
         $this->assertFalse($dotDebugBar->shouldEnable(''));
     }
@@ -44,7 +44,7 @@ class DebugBarTest extends TestCase
      */
     public function testWillNotEnableIfConfigEnabledButIpAddressIsInvalid(): void
     {
-        $configuration = $this->createMock(Configuration::class);
+        $configuration = $this->createStub(Configuration::class);
         $dotDebugBar   = new DebugBar($configuration, $this->config);
         $this->assertFalse($dotDebugBar->shouldEnable('test'));
     }
@@ -55,7 +55,7 @@ class DebugBarTest extends TestCase
      */
     public function testWillNotEnableIfConfigEnabledAndValidIpv4AddressNotWhitelisted(): void
     {
-        $configuration = $this->createMock(Configuration::class);
+        $configuration = $this->createStub(Configuration::class);
         $dotDebugBar   = new DebugBar($configuration, $this->config);
         $this->assertFalse($dotDebugBar->shouldEnable('127.0.0.1'));
     }
@@ -66,7 +66,7 @@ class DebugBarTest extends TestCase
      */
     public function testWillNotEnableIfConfigEnabledAndValidIpv6AddressNotWhitelisted(): void
     {
-        $configuration = $this->createMock(Configuration::class);
+        $configuration = $this->createStub(Configuration::class);
         $dotDebugBar   = new DebugBar($configuration, $this->config);
         $this->assertFalse(
             $dotDebugBar->shouldEnable('::1')
@@ -81,7 +81,7 @@ class DebugBarTest extends TestCase
     {
         $config                                     = $this->config;
         $config[DebugBar::class]['ipv4Whitelist'][] = '127.0.0.1';
-        $configuration                              = $this->createMock(Configuration::class);
+        $configuration                              = $this->createStub(Configuration::class);
         $dotDebugBar                                = new DebugBar($configuration, $config);
         $this->assertTrue($dotDebugBar->shouldEnable('127.0.0.1'));
     }
@@ -94,7 +94,7 @@ class DebugBarTest extends TestCase
     {
         $config                                     = $this->config;
         $config[DebugBar::class]['ipv6Whitelist'][] = '::1';
-        $configuration                              = $this->createMock(Configuration::class);
+        $configuration                              = $this->createStub(Configuration::class);
         $dotDebugBar                                = new DebugBar($configuration, $config);
         $this->assertTrue($dotDebugBar->shouldEnable('::1'));
     }
@@ -107,7 +107,7 @@ class DebugBarTest extends TestCase
     {
         $config                                     = $this->config;
         $config[DebugBar::class]['ipv4Whitelist'][] = '*';
-        $configuration                              = $this->createMock(Configuration::class);
+        $configuration                              = $this->createStub(Configuration::class);
         $dotDebugBar                                = new DebugBar($configuration, $config);
         $this->assertTrue($dotDebugBar->shouldEnable('127.0.0.1'));
     }
@@ -120,7 +120,7 @@ class DebugBarTest extends TestCase
     {
         $config                                     = $this->config;
         $config[DebugBar::class]['ipv6Whitelist'][] = '*';
-        $configuration                              = $this->createMock(Configuration::class);
+        $configuration                              = $this->createStub(Configuration::class);
         $dotDebugBar                                = new DebugBar($configuration, $config);
         $this->assertTrue($dotDebugBar->shouldEnable('::1'));
     }
@@ -131,7 +131,7 @@ class DebugBarTest extends TestCase
      */
     public function testWillToggle(): void
     {
-        $configuration = $this->createMock(Configuration::class);
+        $configuration = $this->createStub(Configuration::class);
         $dotDebugBar   = new DebugBar($configuration, $this->config);
         $this->assertFalse($dotDebugBar->isEnabled());
         $dotDebugBar->enable();
@@ -148,7 +148,7 @@ class DebugBarTest extends TestCase
      */
     public function testWillAddMessage(): void
     {
-        $configuration = $this->createMock(Configuration::class);
+        $configuration = $this->createStub(Configuration::class);
         $dotDebugBar   = new DebugBar($configuration, $this->config);
         $this->assertCount(0, $dotDebugBar->getMessagesCollector()->getMessages());
         $dotDebugBar->addMessage('test');
@@ -162,7 +162,7 @@ class DebugBarTest extends TestCase
      */
     public function testWillStartStopMeasureTimer(): void
     {
-        $configuration = $this->createMock(Configuration::class);
+        $configuration = $this->createStub(Configuration::class);
         $dotDebugBar   = new DebugBar($configuration, $this->config);
         $this->assertFalse($dotDebugBar->getTimeDataCollector()->hasStartedMeasure('test'));
         $dotDebugBar->startTimer('test');
@@ -179,7 +179,7 @@ class DebugBarTest extends TestCase
      */
     public function testWillAddThrowable(): void
     {
-        $configuration = $this->createMock(Configuration::class);
+        $configuration = $this->createStub(Configuration::class);
         $dotDebugBar   = new DebugBar($configuration, $this->config);
         $this->assertCount(0, $dotDebugBar->getExceptionsCollector()->getExceptions());
         $dotDebugBar->addThrowable(new \Exception('test'));

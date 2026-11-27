@@ -49,7 +49,7 @@ class DebugBarFactoryTest extends TestCase
      */
     public function testWillNotCreateServiceWithoutConfig(): void
     {
-        $container = $this->createMock(ContainerInterface::class);
+        $container = $this->createStub(ContainerInterface::class);
 
         $container->method('has')->willReturnMap([
             [EntityManager::class, true],
@@ -68,7 +68,7 @@ class DebugBarFactoryTest extends TestCase
      */
     public function testWillNotCreateServiceWithoutMissingConfigEnabled(): void
     {
-        $container = $this->createMock(ContainerInterface::class);
+        $container = $this->createStub(ContainerInterface::class);
 
         $container->method('has')->willReturnMap([
             [EntityManager::class, true],
@@ -99,7 +99,7 @@ class DebugBarFactoryTest extends TestCase
      */
     public function testWillNotCreateServiceWithoutMissingConfigIPv4Whitelist(): void
     {
-        $container = $this->createMock(ContainerInterface::class);
+        $container = $this->createStub(ContainerInterface::class);
 
         $container->method('has')->willReturnMap([
             [EntityManager::class, true],
@@ -130,7 +130,7 @@ class DebugBarFactoryTest extends TestCase
      */
     public function testWillNotCreateServiceWithoutMissingConfigIPv6Whitelist(): void
     {
-        $container = $this->createMock(ContainerInterface::class);
+        $container = $this->createStub(ContainerInterface::class);
 
         $container->method('has')->willReturnMap([
             [EntityManager::class, true],
@@ -162,7 +162,7 @@ class DebugBarFactoryTest extends TestCase
      */
     public function testWillNotCreateServiceWithoutMissingConfigJavaScriptRenderer(): void
     {
-        $container = $this->createMock(ContainerInterface::class);
+        $container = $this->createStub(ContainerInterface::class);
 
         $container->method('has')->willReturnMap([
             [EntityManager::class, true],
@@ -195,9 +195,9 @@ class DebugBarFactoryTest extends TestCase
      */
     public function testWillCreateService(): void
     {
-        $configuration = $this->createMock(Configuration::class);
+        $configuration = $this->createStub(Configuration::class);
         $connection    = $this->createMock(Connection::class);
-        $container     = $this->createMock(ContainerInterface::class);
+        $container     = $this->createStub(ContainerInterface::class);
         $em            = $this->createMock(EntityManager::class);
 
         $container->method('has')->willReturnMap([
